@@ -35,14 +35,33 @@
 // export default App
 
 import { Login } from './features/auth/Login';
+import { useEffect, useState } from 'react';
+import { supabase } from './supabaseClient';
+import { LinksDisplay } from './components/LinksDisplay';
+import type { Session } from '@supabase/supabase-js';
 
 function App() {
+  const [session, setSession] = useState<Session | null>(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({data: {session}}) => {
+      setSession(session);
+    });
+
+    const {data: {subscription}} = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
   return (
     <div>
       <h1>Mnz</h1>
-      <Login /> 
+      {!session ? <Login /> : <LinksDisplay session={session} />}
     </div>
   );
+
 }
 
 export default App;
