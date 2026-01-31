@@ -1,9 +1,10 @@
 import './LinksDisplay.css';
 import {useLinksDisplay} from './useLinksDisplay';
 import type { Session } from '@supabase/supabase-js';
+import { LinksForm } from './LinksForm';
 
 export function LinksDisplay({ session }: { session: Session }) {
-    const { links, loading, handleLogout } = useLinksDisplay();
+    const { links, loading, fetchLinks, handleLogout } = useLinksDisplay();
 
     return (
     <div>
@@ -12,9 +13,7 @@ export function LinksDisplay({ session }: { session: Session }) {
             <button onClick={handleLogout}>Logout</button>
         </header>
 
-        <div className="action-bar">
-            <button className="btn-primary" onClick={() => {}}>+ New Link</button>
-        </div>
+        <LinksForm onLinkCreated={fetchLinks} />
 
         <h3>Your Links</h3>
 
@@ -24,7 +23,7 @@ export function LinksDisplay({ session }: { session: Session }) {
                 (<ul className="links-list">
                     {links.map((link) => (
                         <li key={link.id}>
-                            <strong>{link.short_id}</strong> - {link.original_url}
+                           <a href={`${window.location.origin}/${link.short_id}`} target="_blank" rel="noreferrer">{window.location.origin}/{link.short_id}</a> - {link.original_url}
                         </li>
                     ))}
                 </ul>)

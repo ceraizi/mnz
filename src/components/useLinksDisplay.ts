@@ -29,10 +29,5 @@ export function useLinksDisplay() {
     fetchLinks();
   }, []);
 
-  return {
-    links,
-    loading,
-    fetchLinks,
-    handleLogout
-  };
+  return {links, loading, fetchLinks, handleLogout};
 }
