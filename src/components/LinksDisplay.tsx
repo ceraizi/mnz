@@ -45,7 +45,13 @@ export function LinksDisplay({session}: {session: Session}) {
                                     </div>
                                 ) : (
                                     <div className="view-mode">
-                                        <span><strong>{link.short_id}</strong> → {link.original_url}</span>
+                                        <span>
+                                            <a href={`${window.location.origin}/${link.short_id}`} target="_blank" rel="noopener noreferrer" className="short-link-anchor">
+                                                <strong>{link.short_id}</strong>
+                                            </a>
+                                            {" → "}
+                                            <span className="original-url-text">{link.original_url}</span>
+                                        </span>
                                         <div className="actions">
                                             <button onClick={() => startEditing(link.id, link.original_url)}>Edit</button>
                                             <button onClick={() => deleteLink(link.id)} className="btn-delete">Delete</button>

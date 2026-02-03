@@ -39,6 +39,8 @@ import { useEffect, useState } from 'react';
 import { supabase } from './supabaseClient';
 import { LinksDisplay } from './components/LinksDisplay';
 import type { Session } from '@supabase/supabase-js';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Redirect } from './components/Redirect/Redirect';
 
 function App() {
   const [session, setSession] = useState<Session | null>(null);
@@ -56,10 +58,19 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <h1>Mnz</h1>
-      {!session ? <Login /> : <LinksDisplay session={session} />}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={
+            <div>
+              <h1>Mnz</h1>
+              {!session ? <Login /> : <LinksDisplay session={session} />}
+            </div>
+          } 
+        />
+
+        <Route path="/:shortId" element={<Redirect />} />
+      </Routes>
+    </BrowserRouter>
   );
 
 }
