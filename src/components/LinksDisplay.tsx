@@ -5,7 +5,7 @@ import { LinksForm } from './LinksForm';
 import { useState } from 'react';
 
 export function LinksDisplay({session}: {session: Session}) {
-    const {links, loading, fetchLinks, handleLogout, deleteLink, updateLink} = useLinksDisplay();
+    const {links, loading, fetchLinks, handleLogout, deleteLink, updateLink, copiedId, copyToClipboard} = useLinksDisplay();
 
     const [editingId, setEditingId] = useState<string | null>(null);
     const [tempUrl, setTempUrl] = useState('');
@@ -51,8 +51,10 @@ export function LinksDisplay({session}: {session: Session}) {
                                             </a>
                                             {" → "}
                                             <span className="original-url-text">{link.original_url}</span>
+                                            <span className="clicks-badge">📊 {link.clicks || 0} clicks</span>
                                         </span>
                                         <div className="actions">
+                                            <button onClick={() => copyToClipboard(link.short_id, link.id)} className="btn-copy">{copiedId === link.id ? '✅ Copied!' : '📋 Copy'}</button>
                                             <button onClick={() => startEditing(link.id, link.original_url)}>Edit</button>
                                             <button onClick={() => deleteLink(link.id)} className="btn-delete">Delete</button>
                                         </div>

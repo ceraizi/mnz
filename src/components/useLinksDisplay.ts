@@ -5,11 +5,13 @@ export interface Link {
   id: string;
   original_url: string;
   short_id: string;
+  clicks: number;
 }
 
 export function useLinksDisplay() {
   const [links, setLinks] = useState<Link[]>([]);
   const [loading, setLoading] = useState(true);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const fetchLinks = async () => {
     const {data, error} = await supabase.from('links').select('*').order('created_at', { ascending: false });
@@ -51,5 +53,14 @@ export function useLinksDisplay() {
     }
   };
 
-  return {links, loading, fetchLinks, handleLogout, deleteLink, updateLink};
+  const copyToClipboard = async (shortId: string, id: string) => {
+    const fullUrl = `${window.location.origin}/${shortId}`;
+    
+    await navigator.clipboard.writeText(fullUrl);
+    
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
+
+  return {links, loading, fetchLinks, handleLogout, deleteLink, updateLink, copiedId, copyToClipboard};
 }
