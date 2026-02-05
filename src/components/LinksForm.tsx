@@ -10,9 +10,12 @@ export function LinksForm({ onLinkCreated }: LinkFormProps) {
 
   return (
     <form className="link-form" onSubmit={handleSubmit}>
-      <input type="url" className="link-input" placeholder="Paste your URL" value={url} onChange={(e) => setUrl(e.target.value)} required/>
+      <div className="link-input-group">
+        <label htmlFor="url-input">Shorten a new link</label>
+        <input id="url-input" type="url" className="link-input" placeholder="https://example.com/" value={url} onChange={(e) => setUrl(e.target.value)} required/>
+      </div>
       <button type="submit" className="btn-submit" disabled={isSubmitting}>
-        {isSubmitting ? "Creating..." : "Create"}
+        {isSubmitting ? "Generating..." : "Shorten URL"}
       </button>
     </form>
   );
