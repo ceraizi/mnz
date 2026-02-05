@@ -3,7 +3,7 @@ import { supabase } from '../supabaseClient';
 import { nanoid } from 'nanoid';
 
 export function useLinksForm(onSuccess: () => void) {
-    const [url, setUrl] = useState('');
+    const [url, setUrl] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleSubmit = async (e: React.SubmitEvent) => {
@@ -17,7 +17,7 @@ export function useLinksForm(onSuccess: () => void) {
 
         const shortId = nanoid(6);
 
-        const { error } = await supabase.from('links').insert([
+        const { error } = await supabase.from("links").insert([
             { 
             original_url: url, 
             short_id: shortId 
@@ -25,9 +25,9 @@ export function useLinksForm(onSuccess: () => void) {
         ]);
 
         if (error) {
-            alert('Error creating link: ' + error.message);
+            alert("Error creating link: " + error.message);
         } else {
-            setUrl('');
+            setUrl("");
             onSuccess();
         }
 

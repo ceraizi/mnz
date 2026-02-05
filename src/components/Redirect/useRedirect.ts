@@ -20,14 +20,14 @@ export function useRedirect() {
 
             hasExecuted.current = true;
 
-            const {data, error} = await supabase.from('links').select('id, original_url').eq('short_id', shortId).single();
+            const {data, error} = await supabase.from("links").select("id, original_url").eq("short_id", shortId).single();
 
             if (error || !data) {
-                setError('Link not found.');
+                setError("Link not found.");
                 return;
             }
             
-            const {error: rpcError} = await supabase.rpc('increment_clicks', { 
+            const {error: rpcError} = await supabase.rpc("increment_clicks", { 
                 row_id: data.id 
             });
 

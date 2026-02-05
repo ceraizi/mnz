@@ -14,10 +14,10 @@ export function useLinksDisplay() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const fetchLinks = async () => {
-    const {data, error} = await supabase.from('links').select('*').order('created_at', { ascending: false });
+    const {data, error} = await supabase.from("links").select("*").order("created_at", { ascending: false });
 
     if (error){
-      console.error('Error fetching links:', error);
+      console.error("Error fetching links:", error);
     }
     else{
       setLinks(data || []);
@@ -32,10 +32,10 @@ export function useLinksDisplay() {
   }, []);
 
   const deleteLink = async (id: string) => {
-    const {error} = await supabase.from('links').delete().eq('id', id);
+    const {error} = await supabase.from("links").delete().eq("id", id);
 
     if (error){
-      alert('Error deleting the link: ' + error.message);
+      alert("Error deleting the link: " + error.message);
     }
     else{
       fetchLinks();
@@ -43,10 +43,10 @@ export function useLinksDisplay() {
   };
 
   const updateLink = async (id: string, newUrl: string) => {
-    const {error} = await supabase.from('links').update({original_url: newUrl}).eq('id', id);
+    const {error} = await supabase.from("links").update({original_url: newUrl}).eq("id", id);
 
     if (error){
-      alert('Error updating the link: ' + error.message);
+      alert("Error updating the link: " + error.message);
     }
     else{
       fetchLinks();

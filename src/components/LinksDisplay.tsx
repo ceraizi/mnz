@@ -8,7 +8,7 @@ export function LinksDisplay({session}: {session: Session}) {
     const {links, loading, fetchLinks, handleLogout, deleteLink, updateLink, copiedId, copyToClipboard} = useLinksDisplay();
 
     const [editingId, setEditingId] = useState<string | null>(null);
-    const [tempUrl, setTempUrl] = useState('');
+    const [tempUrl, setTempUrl] = useState("");
 
     const startEditing = (id: string, currentUrl: string) => {
         setEditingId(id);
@@ -54,7 +54,7 @@ export function LinksDisplay({session}: {session: Session}) {
                                             <span className="clicks-badge">📊 {link.clicks || 0} clicks</span>
                                         </span>
                                         <div className="actions">
-                                            <button onClick={() => copyToClipboard(link.short_id, link.id)} className="btn-copy">{copiedId === link.id ? '✅ Copied!' : '📋 Copy'}</button>
+                                            <button onClick={() => copyToClipboard(link.short_id, link.id)} className="btn-copy">{copiedId === link.id ? "✅ Copied!" : "📋 Copy"}</button>
                                             <button onClick={() => startEditing(link.id, link.original_url)}>Edit</button>
                                             <button onClick={() => deleteLink(link.id)} className="btn-delete">Delete</button>
                                         </div>

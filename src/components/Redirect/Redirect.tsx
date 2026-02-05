@@ -6,7 +6,7 @@ export function Redirect() {
 
   if (error) {
     return (
-      <div className='redirect-div'>
+      <div className="redirect-div">
         <h1>404</h1>
         <p>{error}</p>
         <a href="/">Go back to the home page.</a>
@@ -15,7 +15,7 @@ export function Redirect() {
   }
 
   return (
-    <div className='redirect-div'>
+    <div className="redirect-div">
       <h2>Redirecting...</h2>
     </div>
   );
