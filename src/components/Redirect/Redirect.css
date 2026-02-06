@@ -1,4 +1,67 @@
-.redirect-div{
-    text-align: "center";
-    margin-top: "50px";
+.redirect-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    text-align: center;
+}
+
+.error-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 16px;
+    border: 2px solid #d1d5db;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    max-width: 400px;
+}
+
+.error-card h1 {
+    font-size: 4rem;
+    color: #ef4444;
+    margin: 0;
+}
+
+.error-card p {
+    color: #4b5563;
+    margin: 1rem 0 2rem;
+    line-height: 1.5;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: #3ecf8e;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.back-button:hover {
+    background: #34b37b;
+}
+
+.loading-content h2 {
+    color: #1f2937;
+    margin-top: 1.5rem;
+}
+
+.loading-content p {
+    color: #6b7280;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f4f6;
+    border-top: 5px solid #3ecf8e;
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

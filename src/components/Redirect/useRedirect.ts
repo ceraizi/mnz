@@ -20,9 +20,9 @@ export function useRedirect() {
 
             hasExecuted.current = true;
 
-            const {data, error} = await supabase.from("links").select("id, original_url").eq("short_id", shortId).single();
+            const {data, error: fetchError} = await supabase.from("links").select("id, original_url").eq("short_id", shortId).single();
 
-            if (error || !data) {
+            if (fetchError || !data) {
                 setError("Link not found.");
                 return;
             }
@@ -32,7 +32,7 @@ export function useRedirect() {
             });
 
             if (rpcError){
-                alert("Error counting click: " + rpcError.message);
+                console.error("Error counting click: " + rpcError.message);
             }
 
             window.location.replace(data.original_url);
