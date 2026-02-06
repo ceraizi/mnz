@@ -85,6 +85,11 @@ h3 {
   font-weight: 800;
 }
 
+.short-link-anchor:hover {
+  color: #34b37b;
+  text-decoration: none;
+}
+
 .original-url-text {
   display: block;
   color: #4b5563;
@@ -176,4 +181,39 @@ h3 {
   border-radius: 6px;
   font-size: 0.9rem;
   outline: none;
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+
+.stats-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid #d1d5db;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.stats-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.stats-value {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #3ecf8e;
+  line-height: 1;
 }

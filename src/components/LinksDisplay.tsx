@@ -20,6 +20,9 @@ export function LinksDisplay({session}: {session: Session}) {
         setEditingId(null);
     };
 
+    const totalLinks = links.length;
+    const totalClicks = links.reduce((acc, curr) => acc + (curr.clicks || 0), 0);
+
     return(
         <div className="container">
             <header className="links-display-header">
@@ -28,6 +31,17 @@ export function LinksDisplay({session}: {session: Session}) {
             </header>
 
             <LinksForm onLinkCreated={fetchLinks} />
+
+            <div className="stats-container">
+                <div className="stats-card">
+                    <span className="stats-label">Total Links</span>
+                    <span className="stats-value">{totalLinks}</span>
+                </div>
+                <div className="stats-card">
+                    <span className="stats-label">Total Clicks</span>
+                    <span className="stats-value">{totalClicks}</span>
+                </div>
+            </div>
 
             <div className="section-title">
                 <h3>Your Links</h3>
